@@ -11,15 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/login', 'LoginController@index');
+Route::post('/login', 'LoginController@verify');
+Route::get('/logout', 'LogoutController@index');
 
-Route::get('/home', function () {
-    	
-    	echo "Welcome home";
-    //return view('welcome');
-});
+Route::get('/home', ['uses'=>'HomeController@index']);
 
 
 
