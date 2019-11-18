@@ -15,6 +15,7 @@ class LoginController extends Controller
 
 		if($req->username == $req->password){
 
+			$req->session()->put('name', $req->username);
 			return redirect('/home');
 		}else{
 			echo "invalid username/password";
