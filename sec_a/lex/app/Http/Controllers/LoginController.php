@@ -14,9 +14,16 @@ class LoginController extends Controller
 	function verify(Request $request){
 		
 		if($request->username == $request->password){
+
+			$request->session()->put('uname', $request->input('username'));
+
 			return redirect('/home');
 		}else{
-			return redirect('/login');
+
+			$request->session()->flash('msg', 'invalid username/password');
+
+			//return view('login.index');
+			return redirect()->route('login.index');
 		}
 	}
 }

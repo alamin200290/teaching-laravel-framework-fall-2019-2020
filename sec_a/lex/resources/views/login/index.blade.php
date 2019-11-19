@@ -22,5 +22,10 @@
 			</tr>
 		</table>
 	</form>
+
+	<div>
+		{{session('msg')}}
+	</div>
+
 </body>
 </html>
