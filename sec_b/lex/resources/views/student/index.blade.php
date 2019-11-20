@@ -16,7 +16,7 @@
 			<td>ACTION</td>
 		</tr>
 
-	 @for($i=0; $i < count($users); $i++)
+	<!--  @for($i=0; $i < count($users); $i++)
 		<tr>
 			<td>{{$users[$i]['id']}}</td>
 			<td>{{$users[$i]['username']}}</td>
@@ -27,7 +27,21 @@
 				<a href="{{route('student.details', $users[$i]['id'])}}">Details</a>
 			</td>
 		</tr>
-	@endfor
+	@endfor -->
+
+	 @foreach($users as $std)
+		<tr>
+			<td>{{$std['id']}}</td>
+			<td>{{$std['username']}}</td>
+			<td>{{$std['password']}}</td>
+			<td>
+				<a href="{{route('student.edit', [$std['id']])}}">Edit</a> | 
+				<a href="{{route('student.delete', [$std['id']])}}">Delete</a> | 
+				<a href="{{route('student.details', [$std['id']])}}">Details</a>
+			</td>
+		</tr>
+	@endforeach
+
 	</table>
 
 </body>

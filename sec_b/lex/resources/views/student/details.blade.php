@@ -5,25 +5,23 @@
 </head>
 <body>
 	<h1>User Details</h1>
-	<a href="/user/userList">Back</a> | 
+	<a href="{{route('student.index')}}">Back</a> | 
 	<a href="/logout">logout</a>
 	
 	<table border="1">
 		<tr>
 			<td>ID</td>
-			<td><%= id %></td>
+			<td>{{$std['id']}}</td>
 		</tr>
 		<tr>
 			<td>USERNAME</td>
-			<td><%= username %></td>
+			<td>{{$std['username']}}</td>
 		</tr>
 		<tr>
 			<td>PASSWORD</td>
-			<td><%= password %></td>
+			<td>{{$std['password']}}</td>
 		</tr>
 
 	</table>
-
-
 </body>
 </html>

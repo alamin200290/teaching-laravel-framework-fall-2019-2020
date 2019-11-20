@@ -25,5 +25,9 @@
 	</table>
 	</form>
 </fieldset>
+
+<div>
+	{{session('msg')}}
+</div>
 </body>
 </html>
