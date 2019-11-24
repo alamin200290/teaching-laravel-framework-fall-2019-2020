@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -31,7 +30,6 @@ class StudentController extends Controller
         //search student from array by ID
         //$std = $this->getStudentList();
         
-
         $std = ['username'=>'test', 'password'=>'123'];
         return view('student.details')->with('user', $std);        
 
