@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>userlist</title>
+	<title>Add Student</title>
 </head>
 <body>
-	<h1>Add user</h1>
+	<h1>Add Student</h1>
 
-	<a href="/home">Back</a> |
-	<a href="/logout">logout</a>
+	<a href="{{route('home.index')}}">Back</a> |
+	<a href="{{route('logout.index')}}">logout</a>
 
 <br><br>
 

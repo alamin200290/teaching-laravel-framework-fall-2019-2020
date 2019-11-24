@@ -7,9 +7,9 @@
 	<h1>Welcome home! {{ session('uname') }}</h1>
 
 	<br>
-	<a href="/user/adduser">Add User</a> |
+	<a href="{{route('student.add')}}">Add User</a> |
 	<a href="{{ route('student.index') }} ">User List</a> |
-	<a href="/logout">logout</a>
+	<a href="{{ route('logout.index') }}">logout</a>
 
 </body>
 </html>

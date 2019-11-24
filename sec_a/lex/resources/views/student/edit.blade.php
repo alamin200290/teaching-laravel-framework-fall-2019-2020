@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>userlist</title>
+	<title>Student Edit</title>
 </head>
 <body>
-	<h1>Edit user</h1>
+	<h1>Edit Student</h1>
 
-	<a href="/user/userlist">Back</a> |
-	<a href="/logout">logout</a>
+	<a href="{{route('home.index')}}">Back</a> |
+	<a href="{{route('logout.index')}}">logout</a>
 
 <br><br>
 
@@ -15,11 +15,11 @@
 	<table border="0">
 		<tr>
 			<td>Username</td>
-			<td><input type="text" name="username" value="<%=user.username%>"></td>
+			<td><input type="text" name="username" value="{{$user['username']}}"></td>
 		</tr>
 		<tr>
 			<td>PASSWORD</td>
-			<td><input type="password" name="password" value="<%=user.password%>"></td>
+			<td><input type="password" name="password" value="{{$user['password']}}"></td>
 		</tr>
 		<tr>
 			<td></td>
