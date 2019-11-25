@@ -15,6 +15,10 @@
 			<td><input type="text" name="username"></td>
 		</tr>
 		<tr>
+			<td>Type</td>
+			<td><input type="text" name="type"></td>
+		</tr>
+		<tr>
 			<td>PASSWORD</td>
 			<td><input type="password" name="password"></td>
 		</tr>

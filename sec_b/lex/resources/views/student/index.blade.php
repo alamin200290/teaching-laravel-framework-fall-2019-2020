@@ -13,31 +13,20 @@
 			<td>ID</td>
 			<td>USERNAME</td>
 			<td>PASSWORD</td>
+			<td>Type</td>
 			<td>ACTION</td>
 		</tr>
 
-	<!--  @for($i=0; $i < count($users); $i++)
+	 @foreach($users as $s)
 		<tr>
-			<td>{{$users[$i]['id']}}</td>
-			<td>{{$users[$i]['username']}}</td>
-			<td>{{$users[$i]['password']}}</td>
+			<td>{{$s->userId}}</td>
+			<td>{{$s->username}}</td>
+			<td>{{$s->type}}</td>
+			<td>{{$s->password}}</td>
 			<td>
-				<a href="/user/edit/{{ $users[$i]['id'] }}">Edit</a> | 
-				<a href="/user/delete/{{ $users[$i]['id'] }}">Delete</a> | 
-				<a href="{{route('student.details', $users[$i]['id'])}}">Details</a>
-			</td>
-		</tr>
-	@endfor -->
-
-	 @foreach($users as $std)
-		<tr>
-			<td>{{$std['id']}}</td>
-			<td>{{$std['username']}}</td>
-			<td>{{$std['password']}}</td>
-			<td>
-				<a href="{{route('student.edit', [$std['id']])}}">Edit</a> | 
-				<a href="{{route('student.delete', [$std['id']])}}">Delete</a> | 
-				<a href="{{route('student.details', [$std['id']])}}">Details</a>
+				<a href="{{route('student.edit', $s->userId)}}">Edit</a> | 
+				<a href="{{route('student.delete', $s->userId)}}">Delete</a> | 
+				<a href="{{route('student.details', $s->userId)}}">Details</a>
 			</td>
 		</tr>
 	@endforeach
