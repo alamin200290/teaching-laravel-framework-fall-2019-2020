@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\User;
 
 class StudentController extends Controller
 {
     function index(Request $request){
 
-    	$std = $this->getStudentList();
-    	return view('student.index')->with('user', $std);
+    	$stds = \App\User::all();
+       // $stds = DB::table('users')->get();
+    	return view('student.index')->with('users', $stds);
     }
 
     function delete($id){
@@ -42,26 +45,38 @@ class StudentController extends Controller
 
     function store(Request $request){
 
-    	//add student value in array
-    	$std = $this->getStudentList();
-    	//push new student
-    	return view('student.index')->with('user', $std);
+    	$user = new User();
+
+        $user->username = $request->username;
+        $user->password =$request->password;
+        $user->type ='user';
+        $user->dept ='CS';
+        $user->name ='';
+        $user->cgpa ='';
+
+        if($user->save()){
+            return redirect()->route('student.index');
+        }else{
+            return redirect()->route('student.add');
+        }
     }
 
     function edit($id){
 
-    	//searching student from array by ID
-    	$std = ['username'=>'test', 'password'=>'123'];
-    	return view('student.edit')->with('user', $std);
+    	$user = User::find($id);
+    	return view('student.edit')->with('user', $user);
     }
 
 
     function update(Request $request, $id){
 
-		//update student value in array
-    	$std = $this->getStudentList();
+        $user = User::find($id);
 
-    	return view('student.index')->with('user', $std);
+        $user->username = $request->username;
+        $user->password = $request->password;
+
+        $user->save();
+    	return redirect()->route('student.index');
     }
 
     function getStudentList(){
