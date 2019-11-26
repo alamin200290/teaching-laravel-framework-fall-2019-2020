@@ -7,6 +7,11 @@
 	<h1>Login</h1>
 
 	<form method="post" >
+		<!-- @csrf -->
+
+		<!-- {{csrf_field()}} -->
+
+		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<table>
 			<tr>
 				<td>Username</td>

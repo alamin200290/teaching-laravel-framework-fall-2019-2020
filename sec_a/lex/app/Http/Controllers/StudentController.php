@@ -7,11 +7,19 @@ use App\User;
 
 class StudentController extends Controller
 {
+
+
     function index(Request $request){
 
-    	$stds = \App\User::all();
-       // $stds = DB::table('users')->get();
-    	return view('student.index')->with('users', $stds);
+        if($request->session()->has('uname')){
+            
+            $stds = \App\User::all();
+            // $stds = DB::table('users')->get();
+            return view('student.index')->with('users', $stds);
+
+        }else{
+            return redirect()->route('login.index');
+        }
     }
 
     function delete($id){
@@ -22,11 +30,7 @@ class StudentController extends Controller
 
     function destroy(Request $request, $id){
 
-        //delete student from array
-        $std = $this->getStudentList();
-        //delete student
-
-        return view('student.index')->with('user', $std);
+        return redirect()->route('student.index');
     }
 
     function show($id){
@@ -46,7 +50,6 @@ class StudentController extends Controller
     function store(Request $request){
 
     	$user = new User();
-
         $user->username = $request->username;
         $user->password =$request->password;
         $user->type ='user';
@@ -62,7 +65,6 @@ class StudentController extends Controller
     }
 
     function edit($id){
-
     	$user = User::find($id);
     	return view('student.edit')->with('user', $user);
     }
@@ -71,20 +73,10 @@ class StudentController extends Controller
     function update(Request $request, $id){
 
         $user = User::find($id);
-
         $user->username = $request->username;
         $user->password = $request->password;
-
         $user->save();
     	return redirect()->route('student.index');
-    }
-
-    function getStudentList(){
-    	return [
-    		['id'=>'11111-2', 'username'=>'xyz', 'password'=>'124'],
-    		['id'=>'11111-4', 'username'=>'xcz', 'password'=>'1224'],
-    		['id'=>'111133-4', 'username'=>'adz', 'password'=>'123']
-    	];
     }
 }
 
