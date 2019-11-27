@@ -47,12 +47,7 @@ class HomeController extends Controller
     	$id ="1111-1111";
     	$cgpa = "222";
 
-    	if($request->session()->has('name')){
-    		return view('home.index', compact('name', 'id', 'cgpa'));
-    	}else{
-    		return redirect('/login');
-    	}
-
+    	return view('home.index', compact('name', 'id', 'cgpa'));
     }
 }
 

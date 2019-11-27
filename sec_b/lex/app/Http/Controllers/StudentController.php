@@ -8,12 +8,19 @@ use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
-    function index(){
+    function index(Request $request){
 
         //$users = User::all();
-        $users = DB::table('users')->get();
+		$users = DB::table('users')->get(); 
         
-    	return view('student.index')->with('users', $users);
+        if($request->session()->has('name')){
+    		   	return view('student.index')->with('users', $users);
+    	}else{
+    		return redirect()->route('login.index');
+    	}
+
+               
+ 
     }
 
     function details($id){
@@ -46,7 +53,7 @@ class StudentController extends Controller
     	$user = User::find($id);
         $user->username = $req->username;
         $user->password = $req->password;
-        $user->type = $req->type;
+        $user->type = 'user';
         $user->save();
 
     	return redirect()->route('student.index');
