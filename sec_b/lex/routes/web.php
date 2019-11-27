@@ -22,17 +22,18 @@ Route::get('/logout', 'LogoutController@index');
 
 Route::group(['middleware'=>['sess']], function(){
 
-	Route::get('/home', ['uses'=>'HomeController@index']);
-	Route::get('/student/userList', ['as'=>'student.index','uses'=>'StudentController@index']);
+	Route::get('/home', ['as'=>'home.index','uses'=>'HomeController@index']);
+	Route::get('/student/userList', ['as'=>'student.index','uses'=>'StudentController@index']);	
 	Route::get('/student/details/{id}', 'StudentController@details')->name('student.details');
-	Route::get('/student/edit/{id}', 'StudentController@edit')->name('student.edit');
-	Route::post('/student/edit/{id}', 'StudentController@update')->name('student.update');
 
-	Route::get('/student/delete/{id}', 'StudentController@delete')->name('student.delete');
-	Route::post('/student/delete/{id}', 'StudentController@destroy')->name('student.destroy');
-
-	Route::get('/student/add', 'StudentController@add')->name('student.add');
-	Route::post('/student/add', 'StudentController@insert');	
+	Route::group(['middleware'=>['type']], function(){
+			Route::get('/student/edit/{id}', 'StudentController@edit')->name('student.edit');
+			Route::post('/student/edit/{id}', 'StudentController@update')->name('student.update');
+			Route::get('/student/delete/{id}', 'StudentController@delete')->name('student.delete');
+			Route::post('/student/delete/{id}', 'StudentController@destroy')->name('student.destroy');
+			Route::get('/student/add', 'StudentController@add')->name('student.add');
+			Route::post('/student/add', 'StudentController@insert');
+	});	
 });
 
 

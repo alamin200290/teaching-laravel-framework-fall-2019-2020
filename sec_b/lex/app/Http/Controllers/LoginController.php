@@ -17,18 +17,22 @@ class LoginController extends Controller
 
 		//$users = User::all();
 
-/*		$user = User::where('username', $req->username)
+		$user = User::where('username', $req->username)
 					->where('password', $req->password)
-					->get();*/
-
+					->first();
+/*
 		$user = DB::table('users')->where('username', $req->username)
 					->where('password', $req->password)
-					->get();					
+					->get();*/					
 
 		if(count($user) > 0 ){
 	
 			$req->session()->put('name', $req->input('username'));
-			return redirect('/home');
+			//$req->session()->put('user', $user->type);
+			//$req->session()->put('user', $user[0]->type);
+			$req->session()->put('user', $user);
+
+			return redirect()->route('home.index');
 		}else{
 
 			$req->session()->flash('msg', 'invalid username/password');
