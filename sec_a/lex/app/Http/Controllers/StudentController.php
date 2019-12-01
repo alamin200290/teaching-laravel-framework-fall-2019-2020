@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Http\Requests\Student;
+use Validator;
 
 class StudentController extends Controller
 {
-
 
     function index(Request $request){
 
@@ -47,7 +48,31 @@ class StudentController extends Controller
     	return view('student.add');
     }
 
-    function store(Request $request){
+    function store(Student $request){
+
+/*        $request->validate([
+            'username'=>'required',
+            'password'=>'required'
+        ]);*/
+
+/*        $validator = $this->validate($request, [
+
+            'username'=>'required',
+            'password'=>'required'
+        ])->validate();
+        //$validator->validate();*/
+
+/*        $validation = Validator::make($request->all(), [
+            'username'=>'required',
+            'password'=>'required'
+        ]);
+
+        if($validation->fails()){
+            //return back()->with('errors', $validation->errors())->withInput();
+            return redirect()->route('student.add')
+                            ->with('errors', $validation->errors())
+                            ->withInput();
+        }*/
 
     	$user = new User();
         $user->username = $request->username;
@@ -78,6 +103,7 @@ class StudentController extends Controller
         $user->save();
     	return redirect()->route('student.index');
     }
+
 }
 
 

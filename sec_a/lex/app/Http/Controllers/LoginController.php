@@ -16,17 +16,20 @@ class LoginController extends Controller
 	function verify(Request $request){
 		
 		//$users = User::all();
-		/*$user = User::where('username', $request->username)
+		$user = User::where('username', $request->username)
+					->where('password', $request->password)
+					->first();
+
+		//$users = DB::table('users')->get();
+	/*	$user = DB::table('users')->where('username', $request->username)
 					->where('password', $request->password)
 					->get();*/
 
-		//$users = DB::table('users')->get();
-		$user = DB::table('users')->where('username', $request->username)
-					->where('password', $request->password)
-					->get();
-
 		if(count($user) > 0){
 			$request->session()->put('uname', $request->input('username'));
+			//$req->session()->put('user', $user[0]->type);
+			//$req->session()->put('user', $user->type);
+			$request->session()->put('user', $user);
 
 			return redirect()->route('home.index');
 		}else{

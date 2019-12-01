@@ -22,17 +22,17 @@ class VerifyUserType
 	   		return redirect()->route('home.index');
 	   	}*/
 
-        /*if($request->session()->get('user')->type == 'admin'){
-            return $next($request);
-        }else{
-            return redirect()->route('home.index');
-        }*/
-
-        $user = $request->session()->get('user');
-        if( $user->type == 'admin'){
+        if($request->session()->get('user')->type == 'admin'){
             return $next($request);
         }else{
             return redirect()->route('home.index');
         }
+
+        /*$user = $request->session()->get('user');
+        if( $user->type == 'admin'){
+            return $next($request);
+        }else{
+            return redirect()->route('home.index');
+        }*/
     }
 }
