@@ -33,6 +33,8 @@ Route::group(['middleware'=>['sess']], function(){
 			Route::post('/student/delete/{id}', 'StudentController@destroy')->name('student.destroy');
 			Route::get('/student/add', 'StudentController@add')->name('student.add');
 			Route::post('/student/add', 'StudentController@insert');
+
+			Route::resource('/account', 'AccountController');
 	});	
 });
 
