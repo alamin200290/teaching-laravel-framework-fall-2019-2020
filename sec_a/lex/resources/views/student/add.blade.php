@@ -11,7 +11,7 @@
 
 <br><br>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data" >
 	{{csrf_field()}}
 	<table border="0">
 		<tr>
@@ -21,6 +21,10 @@
 		<tr>
 			<td>PASSWORD</td>
 			<td><input type="password" name="password" value="{{old('password')}}"></td>
+		</tr>
+		<tr>
+			<td>Image</td>
+			<td><input type="file" name="pic"></td>
 		</tr>
 		<tr>
 			<td></td>

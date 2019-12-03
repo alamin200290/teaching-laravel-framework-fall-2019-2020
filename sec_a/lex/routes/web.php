@@ -15,10 +15,11 @@ Route::get('/', function(){
 	return view('welcome');
 });
 
+Route::get('/frontpage', "WebsiteController@index");
+
 Route::get('/login', 'LoginController@index')->name('login.index');
 Route::post('/login', 'LoginController@verify');
 Route::get('/logout', 'LogoutController@index')->name('logout.index');
-
 
 Route::group(['middleware'=>['sess']], function(){
 

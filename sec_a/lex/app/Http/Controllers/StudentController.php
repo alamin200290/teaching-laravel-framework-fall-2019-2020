@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
-use App\Http\Requests\Student;
+use App\Http\Requests\StudentRequest;
 use Validator;
 
 class StudentController extends Controller
@@ -48,7 +48,26 @@ class StudentController extends Controller
     	return view('student.add');
     }
 
-    function store(Student $request){
+    function store(Request $request){
+    
+        if($request->hasFile('pic')){
+            $file = $request->file('pic');
+            echo "File Name: ".$file->getClientOriginalName()."<br>";
+            echo "File Extension: ".$file->getClientOriginalExtension()."<br>";
+            echo "File Size: ".$file->getSize()."<br>";
+            echo "File Type: ".$file->getMimeType();
+
+            if($file->move('upload', $file->getClientOriginalName())){
+                echo "success";
+            }
+            
+        }else{
+            echo "fail";
+        }
+
+
+
+
 
 /*        $request->validate([
             'username'=>'required',
@@ -74,7 +93,7 @@ class StudentController extends Controller
                             ->withInput();
         }*/
 
-    	$user = new User();
+    	/*$user = new User();
         $user->username = $request->username;
         $user->password =$request->password;
         $user->type ='user';
@@ -86,7 +105,7 @@ class StudentController extends Controller
             return redirect()->route('student.index');
         }else{
             return redirect()->route('student.add');
-        }
+        }*/
     }
 
     function edit($id){
