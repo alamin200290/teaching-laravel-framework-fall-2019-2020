@@ -17,7 +17,7 @@ class LoginController extends Controller
 
 		//$users = User::all();
 
-		$user = User::where('uname', $req->username)
+		$user = User::where('username', $req->username)
 					->where('password', $req->password)
 					->first();
 /*

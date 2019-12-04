@@ -12,9 +12,10 @@
 */
 
 Route::get('/', function(){
-
 	echo "welcome";
 });
+
+Route::get('/frontpage', 'FrontpageController@index');
 
 Route::get('/login', 'LoginController@index')->name('login.index');
 Route::post('/login', 'LoginController@verify');
