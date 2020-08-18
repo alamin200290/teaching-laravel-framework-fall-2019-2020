@@ -1,0 +1,21 @@
+Running Raw SQL Queries
+
+Running A Select Query:
+$users = DB::select('select * from users where active = ?', [1]);
+
+Using Named Bindings
+Instead of using ? to represent your parameter bindings, you may execute a query using named bindings:
+$results = DB::select('select * from users where id = :id', ['id' => 1]);
+
+Running An Insert Statement:
+DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle']);
+
+Running An Update Statement:
+$affected = DB::update('update users set votes = 100 where name = ?', ['John']);
+
+Running A Delete Statement:
+$deleted = DB::delete('delete from users');
+
+Running A General Statement:
+DB::statement('drop table users');
+

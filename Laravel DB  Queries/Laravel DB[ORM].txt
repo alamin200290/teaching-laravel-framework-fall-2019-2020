@@ -1,0 +1,58 @@
+Retrieving Models:
+$flights = Flight::all();
+
+Adding Additional Constraints:
+$flights = App\Flight::where('active', 1)
+               ->orderBy('name', 'desc')
+               ->take(10)
+               ->get();
+
+Retrieving Single Models / Aggregates
+
+// Retrieve a model by its primary key...
+$flight = App\Flight::find(1);
+$flights = App\Flight::find([1, 2, 3]);
+
+// Retrieve the first model matching the query constraints...
+$flight = App\Flight::where('active', 1)->first();
+
+
+Retrieving Aggregates
+$count = App\Flight::where('active', 1)->count();
+$max = App\Flight::where('active', 1)->max('price');
+
+
+Inserts:
+To create a new record in the database, create a new model instance, set attributes on the model, then call the save method:
+
+
+$flight = new Flight;
+$flight->name = $request->name;
+$flight->save();
+
+
+Updates:
+$flight = App\Flight::find(1);
+$flight->name = 'New Flight Name';
+$flight->save();
+
+Mass Updates:
+App\Flight::where('active', 1)
+          ->where('destination', 'San Diego')
+          ->update(['delayed' => 1]);
+
+Deleting Models
+$flight = App\Flight::find(1);
+$flight->delete();
+
+Deleting An Existing Model By Key:
+App\Flight::destroy(1);
+App\Flight::destroy(1, 2, 3);
+App\Flight::destroy([1, 2, 3]);
+App\Flight::destroy(collect([1, 2, 3]));
+
+Deleting Models By Query
+$deletedRows = App\Flight::where('active', 0)->delete();
+
+
+
